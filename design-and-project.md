@@ -1,20 +1,57 @@
 ---
 layout: page
-title: Design
+title: Design & project
 tagline: 
 ---
 {% include JB/setup %}
 
+## Design
 ### Parser & Generator
-The threft project has a decoupled design in that parser and generators are seperated. The parser checks and parses input files (.thrift, .threft) to the Threft Interface Definition Model (TIDM). The TIDM is then handed to a generator in the form of tidm-json. The generator generates code. Anyone can write a generator for any language, without the need to use Go. This means that a python generator can be written in python, a java generator can be written in java, etc.
+Parser and generators are seperated. The parser checks and parses input files (.thrift, .threft) to the Threft Interface Definition Model (TIDM). The TIDM is then handed to a generator in the form of tidm-json. The generator creates code. This means that the generator doesn't have to be written in Go and thus a python generator can be written in python and a java generator can be written in java, etc.
 
+## Project
 ### Commands
 This project consists of multiple commands.
-The main command is `threft`. This command reads .thrift/.threft files and creates the TIDM. It also invokes a generator and hands it tidm-json.
-
-### TIDM
-The Threft Interface Definition Model is a generalized way to represent data structures and services. It is marshalled to/from tidm-json.
+<dl class="dl-horizontal">
+	<dt>threft</dt>
+	<dd>Reads `.thrift` files and  executes a generator with tidm-json.</dd>
+</dl>
+<dl class="dl-horizontal">
+	<dt>threft-gen-go</dt>
+	<dd>Generates Go code from given tidm-json</dd>
+</dl>
+<dl class="dl-horizontal">
+	<dt>threft-gen-html</dt>
+	<dd>Generates HTML documentation from given tidm-json</dd>
+</dl>
 
 ### Directory structure
-The 
-<strong>/threft</strong>
+<dl class="dl-horizontal">
+	<dt>threft</dt>
+	<dd>Code for the threft command</dd>
+</dl>
+<dl class="dl-horizontal">
+	<dt>threft/tidm</dt>
+	<dd>Go package for the Threft Interface Definition Model. Datastructure that can be marhsalled to/from tidm-json. Also contains parsing and reading methods.</dd>
+</dl>
+<dl class="dl-horizontal">
+	<dt>threft-gen-go</dt>
+	<dd>Code for the threft-gen-go command.</dd>
+</dl>
+<dl class="dl-horizontal">
+	<dt>threft-gen-go/gog</dt>
+	<dd>Go package with the actual Go generator. Uses threft/tidm. Is being used by the threft-gen-go command.</dd>
+</dl>
+<dl class="dl-horizontal">
+	<dt>threft-gen-go-tests/dt>
+	<dd>Contains tests and golden code to verify/develop the go generator with.</dd>
+</dl>
+<dl class="dl-horizontal">
+	<dt>threft-gen-html</dt>
+	<dd>Code for the threft-gen-html command.</dd>
+</dl>
+<dl class="dl-horizontal">
+	<dt>threft-gen-htmlg</dt>
+	<dd>Go package with the actual HTML generator. Uses threft/tidm. Is being used by the threft-gen-html command.</dd>
+</dl>
+
