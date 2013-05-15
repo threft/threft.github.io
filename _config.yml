@@ -18,6 +18,14 @@ author :
   twitter : 
   feedburner : 
 
+navigation:
+- title: "Design & Project"
+  url: /design-and-project
+- title: Getting started
+  url: /getting-started
+- title: All pages
+  url: /pages
+
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
 # Most places will/should use BASE_PATH to make the urls

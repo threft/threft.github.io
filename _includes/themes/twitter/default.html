@@ -41,6 +41,13 @@
 						<li {% if page.url == "/design-and-project" %}class="active"{% endif %} ><a href="design-and-project" >Design &amp; Project</a></li>
 						<li {% if page.url == "/getting-started" %}class="active"{% endif %} ><a href="getting-started">Getting started</a></li>
 						<li {% if page.url == "/pages" %}class="active"{% endif %} ><a href="pages">All pages</a></li>
+						{% for node in site.navigation %}
+							{% if page.url == node.url %}
+								<li class="active"><a href="{{ BASE_PATH }}{{node.url}}" class="active">{{node.title}}</a></li>
+							{% else %}
+								<li><a href="{{ BASE_PATH }}{{node.url}}">{{node.title}}</a></li>
+							{% endif %}
+						{% endfor %}
 					</ul>
 				</div>
 			</div>
