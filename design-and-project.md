@@ -53,6 +53,6 @@ This project consists of multiple commands.
 	<dd>Code for the <i>threft-gen-html</i> command.</dd>
 </dl>
 <dl>
-	<dt>threft-gen-htmlg</dt>
+	<dt>threft-gen-html/htmlg</dt>
 	<dd>Go package with the actual HTML generator. Uses threft/tidm. Is being used by the threft-gen-html command.</dd>
 </dl>
