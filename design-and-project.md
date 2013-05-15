@@ -7,7 +7,7 @@ tagline:
 
 ## Design
 ### Parser & Generator
-Parser and generators are seperated. The parser checks and parses input files (.thrift, .threft) to the Threft Interface Definition Model (TIDM). The TIDM is then handed to a generator in the form of tidm-json. The generator creates code. This means that the generator doesn't have to be written in Go and thus a python generator can be written in python and a java generator can be written in java, etc.
+Parser and generators are seperated. The parser checks and parses input files (.thrift, .threft) to the Threft Interface Definition Model (TIDM). The TIDM is then handed to a generator in the form of tidm-json. The generator creates code. This means that the generator doesn't have to be written in Go and thus a python generator can be written in python and a java generator can be written in java, etc. This also means that you only need to install the generators that you use.
 
 <br/>
 
