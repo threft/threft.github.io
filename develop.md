@@ -5,7 +5,7 @@ tagline:
 ---
 {% include JB/setup %}
 
-## Develop
+### Setup your development environment
  1. Fork the repositories you want to change to your own user on github
  2. Make sure you have your [gopath](http://golang.org/cmd/go/#hdr-GOPATH_environment_variable) setup properly
  3. Change dir to your development gopath

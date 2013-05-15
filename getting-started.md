@@ -5,7 +5,6 @@ tagline:
 ---
 {% include JB/setup %}
 
-## Getting started
 This document will get you up and running to use Threft.
 
 ### Installation
