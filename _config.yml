@@ -28,7 +28,7 @@ navigation:
 - text: Develop
   title: "Contribute to Threft"
   url: /develop
-- title: All pages
+- text: All pages
   url: /pages
 
 # The production_url is only used when full-domain names are needed
