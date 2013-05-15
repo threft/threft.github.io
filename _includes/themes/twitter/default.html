@@ -38,11 +38,11 @@
 				<div class="container">
 					<a class="brand" href="{{ HOME_PATH }}">{{ site.title }}</a>
 					<ul class="nav">
-						{% for node in site.navigation %}
-							{% if page.url == node.url %}
-								<li class="active"><a href="{{ BASE_PATH }}{{node.url}}" class="active">{{node.title}}</a></li>
+						{% for link in site.navigation %}
+							{% if page.url == link.url %}
+								<li class="active"><a href="{{ BASE_PATH }}{{link.url}}" title="{{link.title}}" class="active">{{link.text}}</a></li>
 							{% else %}
-								<li><a href="{{ BASE_PATH }}{{node.url}}">{{node.title}}</a></li>
+								<li><a href="{{ BASE_PATH }}{{link.url}}" title="{{link.title}}">{{link.text}}</a></li>
 							{% endif %}
 						{% endfor %}
 					</ul>
@@ -57,7 +57,7 @@
 			</div>
 			<hr>
 			<footer>
-				<p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name }}
+				<p>{{ site.author.name }}
 					with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
 					and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
 				</p>

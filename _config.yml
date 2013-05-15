@@ -19,10 +19,15 @@ author :
   feedburner : 
 
 navigation:
-- title: "Design & Project"
+- text: "Design & Project"
+  title: "Threft's design and project setup"
   url: /design-and-project
-- title: Getting started
+- text: Getting started
+  title: "How to use Threft"
   url: /getting-started
+- text: Develop
+  title: "Contribute to Threft"
+  url: /develop
 - title: All pages
   url: /pages
 
