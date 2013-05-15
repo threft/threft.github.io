@@ -14,7 +14,7 @@ Parser and generators are seperated. The parser checks and parses input files (.
 This project consists of multiple commands.
 <dl class="dl-horizontal">
 	<dt>threft</dt>
-	<dd>Reads `.thrift` files and  executes a generator with tidm-json.</dd>
+	<dd>Reads <i>.thrift</i> files and  executes a generator with tidm-json.</dd>
 </dl>
 <dl class="dl-horizontal">
 	<dt>threft-gen-go</dt>
@@ -26,32 +26,38 @@ This project consists of multiple commands.
 </dl>
 
 ### Directory structure
-<dl class="dl-horizontal">
-	<dt>threft</dt>
-	<dd>Code for the threft command</dd>
-</dl>
-<dl class="dl-horizontal">
-	<dt>threft/tidm</dt>
-	<dd>Go package for the Threft Interface Definition Model. Datastructure that can be marhsalled to/from tidm-json. Also contains parsing and reading methods.</dd>
-</dl>
-<dl class="dl-horizontal">
-	<dt>threft-gen-go</dt>
-	<dd>Code for the threft-gen-go command.</dd>
-</dl>
-<dl class="dl-horizontal">
-	<dt>threft-gen-go/gog</dt>
-	<dd>Go package with the actual Go generator. Uses threft/tidm. Is being used by the threft-gen-go command.</dd>
-</dl>
-<dl class="dl-horizontal">
-	<dt>threft-gen-go-tests/dt>
-	<dd>Contains tests and golden code to verify/develop the go generator with.</dd>
-</dl>
-<dl class="dl-horizontal">
-	<dt>threft-gen-html</dt>
-	<dd>Code for the threft-gen-html command.</dd>
-</dl>
-<dl class="dl-horizontal">
-	<dt>threft-gen-htmlg</dt>
-	<dd>Go package with the actual HTML generator. Uses threft/tidm. Is being used by the threft-gen-html command.</dd>
-</dl>
-
+<div class="directory-structure">
+	<dl class="dl-horizontal">
+		<dt>threft</dt>
+		<dd>Code for the <i>threft</i> command</dd>
+	</dl>
+	<dl class="dl-horizontal">
+		<dt>threft/tidm</dt>
+		<dd>Go package for the Threft Interface Definition Model. Datastructure that can be marhsalled to/from tidm-json. Also contains parsing and reading methods.</dd>
+	</dl>
+	<dl class="dl-horizontal">
+		<dt>threft-gen-go</dt>
+		<dd>Code for the <i>threft-gen-go</i> command.</dd>
+	</dl>
+	<dl class="dl-horizontal">
+		<dt>threft-gen-go/gog</dt>
+		<dd>Go package with the actual Go generator. Uses threft/tidm. Is being used by the threft-gen-go command.</dd>
+	</dl>
+	<dl class="dl-horizontal">
+		<dt>threft-gen-go-tests</dt>
+		<dd>Contains tests and golden code to verify/develop the go generator with.</dd>
+	</dl>
+	<dl class="dl-horizontal">
+		<dt>threft-gen-html</dt>
+		<dd>Code for the <i>threft-gen-html</i> command.</dd>
+	</dl>
+	<dl class="dl-horizontal">
+		<dt>threft-gen-htmlg</dt>
+		<dd>Go package with the actual HTML generator. Uses threft/tidm. Is being used by the threft-gen-html command.</dd>
+	</dl>
+</div>
+<style>
+	.directory-structure dt {
+		text-align: left;
+	}
+</style>
