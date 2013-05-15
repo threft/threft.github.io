@@ -21,15 +21,15 @@ author :
 navigation:
 - text: "Design & Project"
   title: "Threft's design and project setup"
-  url: /design-and-project
+  url: /design-and-project.html
 - text: Getting started
   title: "How to use Threft"
-  url: /getting-started
+  url: /getting-started.html
 - text: Develop
   title: "Contribute to Threft"
-  url: /develop
+  url: /develop.html
 - text: All pages
-  url: /pages
+  url: /pages.html
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
