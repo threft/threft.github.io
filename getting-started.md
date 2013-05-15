@@ -13,11 +13,13 @@ There are no binary distributions in this point of development. With go, install
 #### go get
 Make sure you have go1.1 installed.
 Execute the following commands in a terminal:
- - `go get github.com/threft/threft`
- - `go get github.com/threft/threft-gen-go`
- - `go get github.com/threft/threft-gen-html`
+ - `go get -u github.com/threft/threft`
+ - `go get -u github.com/threft/threft-gen-go`
+ - `go get -u github.com/threft/threft-gen-html`
+ Use the same commands to update to the latest version.
 
 ### Usage
 Simple usage:
 `threft -i yourFile.thrift -g go -o outputDirectory`
+
 For more information, execute `threft --help`
