@@ -5,9 +5,24 @@ tagline:
 ---
 {% include JB/setup %}
 
+<p>
+	<span class="label label-info">Note!</span>
+	This page describes the general design and project-setup for Threft. As the project is still in it's early stages a lot of what is described here is not finished yet or not even in development! More information will become available gradually on subpages linked from this page.
+</p>
+
+<p>
+	<span class="label label-success">Care to help?</span>
+	If you have an idea/thought, or want to help out with the code. Please let us know, <a target="_blank" href="https://groups.google.com/forum/?fromgroups#!forum/threft-dev" >leave a message</a>!
+</p>
+
 ## Design
-### Parser & Generator
-Parser and generators are seperated. The parser checks and parses input files (.thrift, .threft) to the Threft Interface Definition Model (TIDM). The TIDM is then handed to a generator in the form of tidm-json. The generator creates code. This means that the generator doesn't have to be written in Go and thus a python generator can be written in python and a java generator can be written in java, etc. This also means that you only need to install the generators that you use.
+Rather than creating new idea's and solutions: the Threft design tries to borrow the best idea's from other projects such as Protobuf, Thrift and Go. For instance, even though compromises must be made to stay compatible. 
+### Interface Definition Language: .thrift vs .threft
+The Threft parser can parse two types of files. The first is the existing Thrift <abbr title="Interface Definition Language" >IDL</abbr>, with the .thrift file extension. The second is the more strict Threft IDL, with the .threft file extension.
+### Parser & Generators
+The parser and generators are seperated. The parser checks and parses input files to the Threft Interface Definition Model (TIDM). The TIDM is then handed to a generator in the form of tidm-json. The generator then creates code. Because it is not directly included into the parser binary a generator doesn't have to be written in Go. So if you want to create a generator that creates code for the language you love, then you can do that in your own language!
+### Generated code and libraries
+The Threft project puts the generator to work! The libraries only contain minimal code to help generated code during runtime. Serialisation code and networking services are generated. The use of runtime reflection or generics is kept to a minimum.
 
 <br/>
 
