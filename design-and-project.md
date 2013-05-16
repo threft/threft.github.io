@@ -18,7 +18,7 @@ tagline:
 ## Design
 Rather than creating new idea's and solutions: the Threft design tries to borrow the best idea's from other projects such as Protobuf, Thrift and Go. For instance, even though compromises must be made to stay compatible. 
 ### Interface Definition Language: .thrift vs .threft
-The Threft parser can parse two types of files. The first is the existing <a target="_blank" href="http://thrift.apache.org/docs/idl/" title="Thrift Interface Definition Language" >Thrift IDL</a>, with the .thrift file extension. The second is the more strict <a href="/design/threft-IDL.html" >Threft IDL</a>, with the .threft file extension.
+The Threft parser can parse two types of files. The first is the existing <a target="_blank" href="http://thrift.apache.org/docs/idl/" title="Thrift Interface Definition Language" >Thrift IDL</a>, with the .thrift file extension. The second is the more strict <a href="/design/threft-idl.html" >Threft IDL</a>, with the .threft file extension.
 ### Parser & Generators
 The parser and generators are seperated. The parser checks and parses input files to the Threft Interface Definition Model (TIDM). The TIDM is then handed to a generator in the form of tidm-json. The generator then creates code. Because it is not directly included into the parser binary a generator doesn't have to be written in Go. So if you want to create a generator that creates code for the language you love, then you can do that in your own language!
 ### Generated code and libraries
