@@ -24,3 +24,6 @@ Simple usage:
 `threft -i yourFile.thrift -g go -o outputDirectory`
 
 For more information, execute `threft --help`
+
+### Development
+Want to develop on this project? Check the <a href="/develop.html" >development</a> instructions.
