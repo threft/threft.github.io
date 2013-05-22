@@ -17,6 +17,6 @@ tagline:
 
 ### Issue tracking
 Threft.io uses GitHub issue trackers.
- - Issues on the IDL parser: [threft issues](https://github.com/threft/threft/issues)
+ - Main command (IDL parser): [threft issues](https://github.com/threft/threft/issues)
  - HTML doc generator: [threft-gen-html](https://github.com/threft/threft-gen-html/issues)
- - Go generator: [threft-gen-go](https://github.com/threft/threft-gen-go/issues)
+ - Go code generator: [threft-gen-go](https://github.com/threft/threft-gen-go/issues)
