@@ -7,67 +7,79 @@ tagline:
 
 <p>
 	<span class="label label-info">Note!</span>
-	This page describes the general design and project-setup for Threft. As the project is still in it's early stages a lot of what is described here is not finished yet or not even in development! More information will become available gradually on subpages linked from this page.
+	This page describes the general design and project-setup for Threft.io. As the project is still in it's early stages a lot of what is described here is not actually finished yet or not even in development! More information will become available gradually on subpages under /design, which will be linked from this page.
 </p>
 
 <p>
-	<span class="label label-success">Care to help?</span>
-	If you have an idea/thought, or want to help out with the code. Please let us know, <a target="_blank" href="https://groups.google.com/forum/?fromgroups#!forum/threft-dev" >leave a message</a>!
+	<span class="label label-success">Contribute?</span>
+	Contributions are very welcome! Join <a target="_blank" href="https://groups.google.com/forum/?fromgroups#!forum/threft-dev" >threft-dev</a> and/or find out how to help with <a href="/develop.html" >development</a>.
 </p>
 
 ## Design
-Rather than creating new idea's and solutions: the Threft design tries to borrow the best idea's from other projects such as Protobuf, Thrift and Go. For instance, even though compromises must be made to stay compatible. 
-### Interface Definition Language: .thrift vs .threft
-The Threft parser can parse two types of files. The first is the existing <a target="_blank" href="http://thrift.apache.org/docs/idl/" title="Thrift Interface Definition Language" >Thrift IDL</a>, with the .thrift file extension. The second is the more strict <a href="/design/threft-idl" >Threft IDL</a>, with the .threft file extension.
+Rather than creating new idea's and solutions: the Threft.io design borrows the best idea's from other projects such as Protobuf, Thrift and Go. For instance, even though compromises must be made to stay compatible. 
+
+### IDL: Interface Definition Language
+##### `.thrift` and `.threft`
+The Threft.io parser can parse two types of files.
+The first is the existing <a target="_blank" href="http://thrift.apache.org/docs/idl/" title="Thrift Interface Definition Language" >Thrift IDL</a>, with the `.thrift` file extension.
+The second is the more strict <a href="/design/threft-idl" >Threft.io IDL</a>, with the `.threft` file extension.
+
 ### Parser & Generators
-The parser and generators are seperated. The parser checks and parses input files to the Threft Interface Definition Model (TIDM). The TIDM is then handed to a generator in the form of tidm-json. The generator then creates code. Because it is not directly included into the parser binary a generator doesn't have to be written in Go. So if you want to create a generator that creates code for the language you love, then you can do that in your own language!
-### Generated code and libraries
-The Threft project puts the generator to work! The libraries only contain minimal code to help generated code during runtime. Serialisation code and networking services are generated. The use of runtime reflection or generics is kept to a minimum.
+<img src="/images/parser_generator_large.png" alt="Parse and Generator" />
+The parser and generators are seperated. The parser checks and parses input files to the Threft Interface Definition Model (TIDM). The TIDM is then handed to a generator in the form of tidm-json. The generator then creates code. A generator doesn't have to be written in Go because it is separated from the parser. Anyone can create a generator for any language in any language.
+
+### Generated code and support libraries
+<img src="/images/code_libraries.png" alt="Generated code, Threft support library and Language standard library." />
+The Threft.io project puts the generator to work! Serialisation code and protocols are generated. The libraries contain code to help generated code during runtime. The use of runtime reflection is kept to a minimum.
 
 <br/>
 
 ## Project
+
 ### Commands
-This project consists of multiple commands.
+The Threft.io project consists of multiple commands.
 <dl>
 	<dt>threft</dt>
-	<dd>Reads <i>.thrift</i> files and  executes a generator with tidm-json.</dd>
+	<dd>
+		Reads <i>.thrift</i> files and  executes a generator with tidm-json.<br/>
+		<a target="_blank" href="http://github.com/threft/threft" >source</a>
+	</dd>
 </dl>
 <dl>
 	<dt>threft-gen-go</dt>
-	<dd>Generates Go code from given tidm-json</dd>
+	<dd>
+		Generates Go code from given tidm-json.<br/>
+		<a target="_blank" href="http://github.com/threft/threft-gen-go" >source</a>
+	</dd>
 </dl>
 <dl>
 	<dt>threft-gen-html</dt>
-	<dd>Generates HTML documentation from given tidm-json</dd>
+	<dd>
+		Generates HTML documentation from given tidm-json.<br/>
+		<a target="_blank" href="http://github.com/threft/threft-gen-html" >source</a>
+	</dd>
 </dl>
 
-### Directory structure
-<dl>
-	<dt>threft</dt>
-	<dd>Code for the <i>threft</i> command</dd>
-</dl>
+### Packages
+The project commands are backed by packages.
 <dl>
 	<dt>threft/tidm</dt>
-	<dd>Go package for the Threft Interface Definition Model. Datastructure that can be marhsalled to/from tidm-json. Also contains parsing and reading methods.</dd>
-</dl>
-<dl>
-	<dt>threft-gen-go</dt>
-	<dd>Code for the <i>threft-gen-go</i> command.</dd>
+	<dd>
+		Threft Interface Definition Model. Datastructure that can be marhsalled to/from tidm-json. Also contains IDL parsing code.<br/>
+		<a target="_blank" href="https://github.com/threft/threft/tree/master/tidm" >source</a> | <a target="_blank" href="http://godoc.org/github.com/threft/threft/tidm" >godoc</a>
+	</dd>
 </dl>
 <dl>
 	<dt>threft-gen-go/gog</dt>
-	<dd>Go package with the actual Go generator. Uses threft/tidm. Is being used by the threft-gen-go command.</dd>
-</dl>
-<dl>
-	<dt>threft-gen-go-tests</dt>
-	<dd>Contains tests and golden code to verify/develop the go generator with.</dd>
-</dl>
-<dl>
-	<dt>threft-gen-html</dt>
-	<dd>Code for the <i>threft-gen-html</i> command.</dd>
+	<dd>
+		Actual Go generator code. Is being used by the threft-gen-go command.<br/>
+		<a target="_blank" href="https://github.com/threft/threft-gen-go/tree/master/gog" >source</a> | <a target="_blank" href="http://godoc.org/github.com/threft/threft-gen-go/gog" >godoc</a>
+	</dd>
 </dl>
 <dl>
 	<dt>threft-gen-html/htmlg</dt>
-	<dd>Go package with the actual HTML generator. Uses threft/tidm. Is being used by the threft-gen-html command.</dd>
+	<dd>
+		Actual HTML generator code. Is being used by the threft-gen-html command.<br/>
+		<a target="_blank" href="https://github.com/threft/threft-gen-html/tree/master/htmlg" >source</a> | <a target="_blank" href="http://godoc.org/github.com/threft/threft-gen-html/htmlg" >godoc</a>
+	</dd>
 </dl>

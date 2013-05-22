@@ -5,7 +5,7 @@ tagline:
 ---
 {% include JB/setup %}
 
-This document will get you up and running to use Threft.
+This document will get you up and running to use Threft.io.
 
 ### Installation
 There are no binary distributions in this point of development. With go, installation from source is very easy.

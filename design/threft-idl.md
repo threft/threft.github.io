@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Threft IDL
+title: Threft.io IDL
 tagline: 
 ---
 {% include JB/setup %}
