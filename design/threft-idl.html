@@ -26,7 +26,7 @@ decimals       = decimal_digit { decimal_digit } .
 <h4>Identifier</h4>
 An identifier can contain letters, digits, dots and underscores. It must start with a letter or underscore.
 <pre>
-identifier = ( letter | "_") { letter | decimal_digit | "_" | "-" | "." } .
+<a href="#identifier" id="identifier" >identifier</a> = ( letter | "_") { letter | decimal_digit | "_" | "-" | "." } .
 
 lowercase
 Uppercase
@@ -40,7 +40,7 @@ fooBarÆ   // illegal: contains invalid character 'Æ'
 
 <h4>String literal</h4>
 <pre>
-string_literal = `"` { unicode_char | `\"` | "\n" } `"`
+<a href="#string_literal" id="string_literal" >string_literal</a> = `"` { <a href="#unicode_char>unicode_char</a> | `\"` | "\n" } `"`
 
 "foobar"
 "foo"bar"    // illegal: " should be escaped
@@ -55,9 +55,9 @@ Constants are defined and set with a constant value.
 
 <h4>Constant values</h4>
 <pre>
-<a href="#const_value" id="const_value" >               const_value</a>         = literal | identifier | const_value_int | const_value_double | const_value_list | const_value_map
-<a href="#const_value_int" id="const_value_int" >       const_value_int</a>     = ["+" | "-"] decimals
-<a href="#const_value_double" id="const_value_double" > const_value_double</a>  = ["+" | "-"] decimals ["." decimals ] [ ("E" | "e") const_value_int ]
-<a href="#const_value_list" id="const_value_list" >     const_value_list</a>    = '[' (ConstValue ListSeparator?)* ']'
-<a href="#const_value_map" id="const_value_map" >       const_value_map</a>     = '{' (ConstValue ':' ConstValue ListSeparator?)* '}'
+<a href="#const_value" id="const_value"                >const_value</a>        = <a href="#literal">literal</a> | <a href="#identifier">identifier</a> | <a href="#const_value_int">const_value_int</a> | <a href="#const_value_double">const_value_double</a> | <a href="#const_value_list">const_value_list</a> | <a href="#const_value_map">const_value_map</a>
+<a href="#const_value_int" id="const_value_int"        >const_value_int</a>    = ["+" | "-"] <a href="#decimals">decimals</a>
+<a href="#const_value_double" id="const_value_double"  >const_value_double</a> = ["+" | "-"] <a href="#decimals">decimals</a> ["." <a href="#decimals">decimals</a> ] [ ("E" | "e") <a href="#const_value_int">const_value_int</a> ]
+<a href="#const_value_list" id="const_value_list"      >const_value_list</a>   = "[" {<a href="#const_value">const_value</a> } "]"
+<a href="#const_value_map" id="const_value_map"        >const_value_map</a>    = "{" {<a href="#const_value">const_value</a> ":" <a href="#const_value">const_value</a> } "}"
 </pre>
