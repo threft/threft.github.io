@@ -74,7 +74,8 @@ Constants are defined and set with a constant value.
 <script>
 	var lastHref = undefined;
 
-	function scrollToDefinition(targetDomNode) {
+	// make given domNode visible
+	function showDomNode(targetDomNode) {
 		var slideDuration = 400;
 		var slideOffset = 200;
 
@@ -91,6 +92,7 @@ Constants are defined and set with a constant value.
 		}
 	}
 
+	// change the hash without scrolling.
 	function setHashWithoutScroll(hash) {
 		hash = hash.replace( /^#/, '' );
 		var fx, node = $( '#' + hash );
@@ -112,21 +114,33 @@ Constants are defined and set with a constant value.
 		}
 	}
 
+	// handle click on an anchor to do jQuery scroll to given id.
 	$('pre a').click(function(evt) {
 		evt.preventDefault();
 		var href = $(this).attr('href');
 		if(href != undefined && href.length > 0) {
 			setHashWithoutScroll(href);
 			var targetDomNode = $(href)[0];
-			scrollToDefinition(targetDomNode);
+			showDomNode(targetDomNode);
 		} else {
 			console.log('no href set');
 		}
 	});
 
+	// link all anchors in a pre that have an id set to themselve.
+	var anchors = $('pre a');
+	for (var i = 0; i < anchors.length; i++) {
+		var element = anchors[i];
+		var href = $(element).attr('href');
+		var id = $(element).attr('id');
+		if(href == undefined && id != undefined && id.length > 0) {
+			$(element).attr('href', '#'+id);
+		}
+	}
+
 	if(window.location.hash != undefined && window.location.hash.length > 0) {
 		var targetDomNode = $(window.location.hash)[0];
-		scrollToDefinition(targetDomNode);
+		showDomNode(targetDomNode);
 	}
 
 </script>
