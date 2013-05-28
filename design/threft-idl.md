@@ -8,7 +8,7 @@ tagline:
 The Threft.io <abbr title="Interface Definition Language">IDL</abbr> is based on the thrift IDL, but is a lot stricter.
 Some un-used features are removed.
 
-My current approach to this is to implement the thrift parser into the <a target="_blank" href="https://github.com/threft/threft/tree/master/tidm" >tidm package</a> and write down all things I like/dislike.
+My current approach to this is to implement the thrift parser into the [tidm package](https://github.com/threft/threft/tree/master/tidm) and write down all things I like/dislike.
 
 ### Basic definitions
 
