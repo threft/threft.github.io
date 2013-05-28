@@ -5,6 +5,16 @@ tagline:
 ---
 {% include JB/setup %}
 
+<style>
+	pre span {
+		color: #0088CC;
+		cursor: pointer;
+		text-decoration: none;
+	}
+	pre span:hover {
+		text-decoration: underline;
+	}
+</style>
 The Threft.io <abbr title="Interface Definition Language">IDL</abbr> is based on the thrift IDL, but is a lot stricter.
 Some un-used features are removed.
 
@@ -58,9 +68,9 @@ Constants are defined and set with a constant value.
 
 <h4>Constant values</h4>
 <pre>
-<span class="def" id="const_value"         >const_value</span>        = <a href="#literal">literal</a> | <a href="#identifier">identifier</a> | <a href="#const_value_int">const_value_int</a> | <a href="#const_value_double">const_value_double</a> | <a href="#const_value_list">const_value_list</a> | <a href="#const_value_map">const_value_map</a>
-<span class="def" id="const_value_int"     >const_value_int</span>    = ["+" | "-"] <a href="#decimals">decimals</a>
-<span class="def" id="const_value_double"  >const_value_double</span> = ["+" | "-"] <a href="#decimals">decimals</a> ["." <a href="#decimals">decimals</a> ] [ ("E" | "e") <a href="#const_value_int">const_value_int</a> ]
-<span class="def" id="const_value_list"    >const_value_list</span>   = "[" {<a href="#const_value">const_value</a> } "]"
-<span class="def" id="const_value_map"     >const_value_map</span>    = "{" {<a href="#const_value">const_value</a> ":" <a href="#const_value">const_value</a> } "}"
+<span id="const_value"         >const_value</span>        = <a href="#literal">literal</a> | <a href="#identifier">identifier</a> | <a href="#const_value_int">const_value_int</a> | <a href="#const_value_double">const_value_double</a> | <a href="#const_value_list">const_value_list</a> | <a href="#const_value_map">const_value_map</a>
+<span id="const_value_int"     >const_value_int</span>    = ["+" | "-"] <a href="#decimals">decimals</a>
+<span id="const_value_double"  >const_value_double</span> = ["+" | "-"] <a href="#decimals">decimals</a> ["." <a href="#decimals">decimals</a> ] [ ("E" | "e") <a href="#const_value_int">const_value_int</a> ]
+<span id="const_value_list"    >const_value_list</span>   = "[" {<a href="#const_value">const_value</a> } "]"
+<span id="const_value_map"     >const_value_map</span>    = "{" {<a href="#const_value">const_value</a> ":" <a href="#const_value">const_value</a> } "}"
 </pre>
