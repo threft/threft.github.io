@@ -18,12 +18,15 @@ newline        = /* the Unicode code point U+000A */ .
 unicode_char   = /* an arbitrary Unicode code point except newline */ .
 unicode_letter = /* a Unicode code point classified as "Letter" */ .
 unicode_digit  = /* a Unicode code point classified as "Decimal Digit" */ .
+letter         = "a" … "z" | "A" … "Z" .
+decimal_digit  = "0" … "9" .
+decimals       = decimal_digit { decimal_digit } .
 </pre>
 
 <h4>Identifier</h4>
 An identifier can contain letters, digits, dots and underscores. It must start with a letter or underscore.
 <pre>
-identifier = ("a" … "z" | "A" … "Z" | "_") {"a" … "z" | "A" … "Z" | "_" | "-" | "." } .
+identifier = ( letter | "_") { letter | decimal_digit | "_" | "-" | "." } .
 
 lowercase
 Uppercase
@@ -45,3 +48,16 @@ string_literal = `"` { unicode_char | `\"` | "\n" } `"`
 "foo\nbar"   // \n is escaped to a newline (unicode code point U+000A)
 </pre>
 
+<h3>Constants</h3>
+Constants are defined and set with a constant value.
+
+<h4>Constant definitions</h4>
+
+<h4>Constant values</h4>
+<pre>
+<a href="#const_value" id="const_value" >               const_value</a>         = literal | identifier | const_value_int | const_value_double | const_value_list | const_value_map
+<a href="#const_value_int" id="const_value_int" >       const_value_int</a>     = ["+" | "-"] decimals
+<a href="#const_value_double" id="const_value_double" > const_value_double</a>  = ["+" | "-"] decimals ["." decimals ] [ ("E" | "e") const_value_int ]
+<a href="#const_value_list" id="const_value_list" >     const_value_list</a>    = '[' (ConstValue ListSeparator?)* ']'
+<a href="#const_value_map" id="const_value_map" >       const_value_map</a>     = '{' (ConstValue ':' ConstValue ListSeparator?)* '}'
+</pre>
