@@ -30,7 +30,10 @@ The parser and generators are seperated. The parser checks and parses input file
 
 ### Generated code and support libraries
 <img src="/images/code_libraries.png" alt="Generated code, Threft support library and Language standard library." />
-The Threft.io project puts the generator to work! Serialisation code and protocols are generated. The libraries contain code to help generated code during runtime. The use of runtime reflection is kept to a minimum.
+Since everyone can create a generator, this project cannot controll the design of the generated code. Since the Go generator (threft-gen-go) is part of this project a set of design principles are defined:
+ - Minimal runtime reflection and type assertion in generated code.
+ - Threrefore: code for serialisation/de-serialisation is to be generated, not support library.
+ - Support library should only complement the standard libraries with small functionality such as networking helpers.
 
 <br/>
 
