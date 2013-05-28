@@ -26,7 +26,7 @@ The second is the more strict <a href="/design/threft-idl" >Threft.io IDL</a>, w
 
 ### Parser & Generators
 <img src="/images/parser_generator_large.png" alt="Parse and Generator" />
-The parser and generators are seperated. The parser checks and parses input files to the Threft Interface Definition Model (TIDM). The TIDM is then handed to a generator in the form of tidm-json. The generator then creates code. A generator doesn't have to be written in Go because it is separated from the parser. Anyone can create a generator for any language in any language.
+The parser and generators are seperated. The parser checks and parses input files to the Threft Interface Definition Model (TIDM). The TIDM is then marshalled to tidm-json, which is simply json following a specific structure. The parser executes the generator and sends the tidm-json on stdin. The generator creates code and writes files. A generator doesn't have to be written in Go because it is separated from the parser. Anyone can create a generator for any language in any language.
 
 ### Generated code and support libraries
 <img src="/images/code_libraries.png" alt="Generated code, Threft support library and Language standard library." />
