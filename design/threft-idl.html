@@ -6,13 +6,8 @@ tagline:
 {% include JB/setup %}
 
 <style>
-	pre span {
-		color: #0088CC;
+	pre a {
 		cursor: pointer;
-		text-decoration: none;
-	}
-	pre span:hover {
-		text-decoration: underline;
 	}
 </style>
 The Threft.io <abbr title="Interface Definition Language">IDL</abbr> is based on the thrift IDL, but is a lot stricter.
@@ -24,19 +19,19 @@ My current approach to this is to implement the thrift parser into the <a target
 
 <h4>Characters</h4>
 <pre>
-<span id="newline"               >newline</span>        = /* the Unicode code point U+000A */ .
-<span id="unicode_char"     >unicode_char</span>   = /* an arbitrary Unicode code point except newline */ .
-<span id="unicode_letter" >unicode_letter</span> = /* a Unicode code point classified as "Letter" */ .
-<span id="unicode_digit"   >unicode_digit</span>  = /* a Unicode code point classified as "Decimal Digit" */ .
-<span id="letter"                 >letter</span>         = "a" … "z" | "A" … "Z" .
-<span id="decimal_digit"   >decimal_digit</span>  = "0" … "9" .
-<span id="decimals"             >decimals</span>       = <a href="#decimal_digit">decimal_digit</a> { <a href="#decimal_digit">decimal_digit</a> } .
+<a id="newline"               >newline</a>        = /* the Unicode code point U+000A */ .
+<a id="unicode_char"     >unicode_char</a>   = /* an arbitrary Unicode code point except newline */ .
+<a id="unicode_letter" >unicode_letter</a> = /* a Unicode code point classified as "Letter" */ .
+<a id="unicode_digit"   >unicode_digit</a>  = /* a Unicode code point classified as "Decimal Digit" */ .
+<a id="letter"                 >letter</a>         = "a" … "z" | "A" … "Z" .
+<a id="decimal_digit"   >decimal_digit</a>  = "0" … "9" .
+<a id="decimals"             >decimals</a>       = <a href="#decimal_digit">decimal_digit</a> { <a href="#decimal_digit">decimal_digit</a> } .
 </pre>
 
 <h4>Identifier</h4>
 An identifier can contain letters, digits, dots and underscores. It must start with a letter or underscore.
 <pre>
-<span id="identifier" >identifier</span> = ( <a href="#letter">letter</a> | "_") { <a href="#letter">letter</a> | <a href="#decimal_digit">decimal_digit</a> | "_" | "-" | "." } .
+<a id="identifier" >identifier</a> = ( <a href="#letter">letter</a> | "_") { <a href="#letter">letter</a> | <a href="#decimal_digit">decimal_digit</a> | "_" | "-" | "." } .
 
 lowercase
 Uppercase
@@ -50,7 +45,7 @@ fooBarÆ   // illegal: contains invalid character 'Æ'
 
 <h4>String literal</h4>
 <pre>
-<span id="string_literal" >string_literal</span> = `"` { <a href="#unicode_char">unicode_char</a> | `\"` | "\n" } `"`
+<a id="string_literal" >string_literal</a> = `"` { <a href="#unicode_char">unicode_char</a> | `\"` | "\n" } `"`
 
 "foobar"
 "foo"bar"    // illegal: " should be escaped
@@ -63,14 +58,14 @@ Constants are defined and set with a constant value.
 
 <h4>Constant definitions</h4>
 <pre>
-<span id="const" >const</span> = "const" <a href="#fieldtype">fieldtype</a> <a href="#identifier">identifier</a> "=" <a href="#const_value">const_value</a>
+<a id="const" >const</a> = "const" <a href="#fieldtype">fieldtype</a> <a href="#identifier">identifier</a> "=" <a href="#const_value">const_value</a>
 </pre>
 
 <h4>Constant values</h4>
 <pre>
-<span id="const_value"         >const_value</span>        = <a href="#literal">literal</a> | <a href="#identifier">identifier</a> | <a href="#const_value_int">const_value_int</a> | <a href="#const_value_double">const_value_double</a> | <a href="#const_value_list">const_value_list</a> | <a href="#const_value_map">const_value_map</a>
-<span id="const_value_int"     >const_value_int</span>    = ["+" | "-"] <a href="#decimals">decimals</a>
-<span id="const_value_double"  >const_value_double</span> = ["+" | "-"] <a href="#decimals">decimals</a> ["." <a href="#decimals">decimals</a> ] [ ("E" | "e") <a href="#const_value_int">const_value_int</a> ]
-<span id="const_value_list"    >const_value_list</span>   = "[" {<a href="#const_value">const_value</a> } "]"
-<span id="const_value_map"     >const_value_map</span>    = "{" {<a href="#const_value">const_value</a> ":" <a href="#const_value">const_value</a> } "}"
+<a id="const_value"         >const_value</a>        = <a href="#literal">literal</a> | <a href="#identifier">identifier</a> | <a href="#const_value_int">const_value_int</a> | <a href="#const_value_double">const_value_double</a> | <a href="#const_value_list">const_value_list</a> | <a href="#const_value_map">const_value_map</a>
+<a id="const_value_int"     >const_value_int</a>    = ["+" | "-"] <a href="#decimals">decimals</a>
+<a id="const_value_double"  >const_value_double</a> = ["+" | "-"] <a href="#decimals">decimals</a> ["." <a href="#decimals">decimals</a> ] [ ("E" | "e") <a href="#const_value_int">const_value_int</a> ]
+<a id="const_value_list"    >const_value_list</a>   = "[" {<a href="#const_value">const_value</a> } "]"
+<a id="const_value_map"     >const_value_map</a>    = "{" {<a href="#const_value">const_value</a> ":" <a href="#const_value">const_value</a> } "}"
 </pre>
