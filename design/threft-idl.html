@@ -174,8 +174,8 @@ enum FoodType {
 
 <h4>Struct</h4>
 <pre>
-<a id="Struct" >Struct</a> = "struct" <a href="#identifier">identifier</a> "{" <a href="#newline">newline</a> { <a href="#Field">Field</a> } "}" .
-<a id="Field"  >Field</a>  = <a href="#const_value_int">const_value_int</a> ":" ( "required" | "optional" ) <a href="#FieldType">FieldType</a> <a href="#identifier">identifier</a> ["=" <a href="#const_value">const_value</a>] <a href="#newline">newline</a> .
+<a id="Struct" >Struct</a> = "struct" <a href="#identifier">identifier</a> "{" <a href="#newline">newline</a> { <a href="#Field">Field</a> <a href="#newline">newline</a> } "}" .
+<a id="Field"  >Field</a>  = <a href="#const_value_int">const_value_int</a> ":" ( "required" | "optional" ) <a href="#FieldType">FieldType</a> <a href="#identifier">identifier</a> ["=" <a href="#const_value">const_value</a>] .
 
 struct Food {
 	1: required FoodType     type
@@ -189,12 +189,14 @@ struct Food {
 <h4>Exception</h4>
 <i>TODO: Remove exceptions and just use structs instead? Generator can probably decide to write a native exception when struct is being used as exception... Rewriting .thrift files would just required find/replace "exception">"struct".</i>
 <pre>
-<a id="exception" >exception</a> = TODO .
+<a id="Exception" >Exception</a> = TODO .
 </pre>
 
 <h4>Service</h4>
 <pre>
-<a id="service" >service</a> = TODO .
+<a id="Service"      >Service</a>      = "service" <a href="#identifier">identifier</a> "{" <a href="#newline">newline</a> { <a href="#Function">Function</a> <a href="#newline">newline</a> } "}" .
+<a id="Function"     >Function</a>     = [ "oneway" ] <a href="#FunctionType">FunctionType</a> <a href="#identifier">identifier</a> "(" { <a href="#Field">Field</a> } ")" [ "throws (" { <a href="#Field">Field</a> } ")" ] .
+<a id="FunctionType" >FunctionType</a> = "void" | <a href="#FieldType">FieldType</a> .
 </pre>
 
 <h3>Document</h3>
