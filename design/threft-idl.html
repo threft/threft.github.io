@@ -71,14 +71,17 @@ An identifier can contain letters, digits, dots and underscores. It must start w
 <a id="reference"        >reference</a>        = <a href="#include_name">include_name</a> "." <a href="#local_identifier">local_identifier</a> .
 <a id="local_identifier" >local_identifier</a> = ( <a href="#letter">letter</a> | "_" ) { <a href="#letter">letter</a> | <a href="#decimal_digit">decimal_digit</a> | "_" | "-" } .
 
-lowercase
-Uppercase
-camelCase
-_fooBar
-foo-bar
-fooBarç   // illegal: contains invalid character 'ç'
--fooBar   // illegal: does not start with letter or underscore
-0fooBar   // illegal: does not start with letter or underscore
+lowercase  // local_identifier
+Uppercase  // local_identifier
+camelCase  // local_identifier
+_fooBar    // local_identifier
+foo-bar    // local_identifier
+errors.EOF // reference
+info.foo   // reference
+foo.bar.x  // illegal: cannot reference a reference
+fooBarç    // illegal: contains invalid character 'ç'
+-fooBar    // illegal: does not start with letter or underscore
+0fooBar    // illegal: does not start with letter or underscore
 
 </pre>
 
