@@ -24,7 +24,6 @@ Some features have been removed (senum, cpp_include, cpp_types).
 
 <h3>Notation</h3>
 The IDL is specified using Extended Backus-Naur Form (EBNF):
-
 <pre>
 Production  = production_name "=" [ Expression ] "." .
 Expression  = Alternative { "|" Alternative } .
@@ -34,19 +33,17 @@ Group       = "(" Expression ")" .
 Option      = "[" Expression "]" .
 Repetition  = "{" Expression "}" .
 </pre>
-
+<br/>
 Productions are expressions constructed from terms and the following operators, in increasing precedence:
-
 <pre>
 |   alternation
 ()  grouping
 []  option (0 or 1 times)
 {}  repetition (0 to n times)
 </pre>
-
-Lower-case production names are used to identify lexical tokens. Non-terminals are in CamelCase. Lexical tokens are enclosed in double quotes "" or back quotes ``.
-
-The form a … b represents the set of characters from a through b as alternatives.
+<br/>
+Lower-case production names are used to identify lexical tokens. Non-terminals are in CamelCase. Lexical tokens are enclosed in double quotes "" or back quotes ``.<br/>
+The form a … b represents the set of characters from a through b as alternatives.<br/>
 
 <h3>Basic elements</h3>
 
@@ -63,8 +60,8 @@ The form a … b represents the set of characters from a through b as alternativ
 </pre>
 
 <h4>Identifier</h4>
-An identifier can contain letters, digits, dots and underscores. It must start with a letter or underscore.
-TODO: idea. Rename `identifier` to `local_identifier`. Declare `include_name`. Then add declaration ```reference = include_name "." local_identifier```. And ```identifier = local_identifier | referece```
+An identifier can contain letters, digits, dots and underscores. It must start with a letter or underscore.<br/>
+<i>TODO: idea. Rename `identifier` to `local_identifier`. Declare `include_name`. Then add declaration ```reference = include_name "." local_identifier```. And ```identifier = local_identifier | referece```</i>
 <pre>
 <a id="identifier" >identifier</a> = ( <a href="#letter">letter</a> | "_" ) { <a href="#letter">letter</a> | <a href="#decimal_digit">decimal_digit</a> | "_" | "-" | "." } .
 
@@ -123,9 +120,9 @@ The following keywords are reserved and may not be used as identifiers.
 <a href="#definition_type" >definition_type</a> = <a href="#base_type">base_type</a> | <a href="#container_type">container_type</a> //++ TODO move to definition?? .
 <a href="#base_type"       >base_type</a>       = "bool" | "byte" | "i16" | "i32" | "i64" | "double" | "string" | "binary" | "slist" .
 <a href="#container_type"  >container_type</a>  = <a href="#map_type">map_type</a> | <a href="#set_type">set_type</a> | <a href="#list_type">list_type</a> .
-<a href="#map_type"        >map_type</a>        = "map" "&lt;" <a href="#field_type">field_type</a> "," <a href="#field_type">field_type</a> "&gt;" .
-<a href="#set_type"        >set_type</a>        = "set" "&lt;" <a href="#field_type">field_type</a> "&gt;" .
-<a href="#list_type"       >list_type</a>       = "list" "&lt;" <a href="#field_type">field_type</a> "&gt;" .
+<a href="#map_type"        >map_type</a>        = "map&lt;" <a href="#field_type">field_type</a> "," <a href="#field_type">field_type</a> "&gt;" .
+<a href="#set_type"        >set_type</a>        = "set&lt;" <a href="#field_type">field_type</a> "&gt;" .
+<a href="#list_type"       >list_type</a>       = "list&lt;" <a href="#field_type">field_type</a> "&gt;" .
 </pre>
 
 <h3>Definitions</h3>
