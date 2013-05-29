@@ -20,7 +20,7 @@ tagline:
 
 </style>
 The Threft.io <abbr title="Interface Definition Language">IDL</abbr> is based on the thrift IDL, but is a lot stricter.
-Some un-used features are removed.
+Some features have been removed (senum, cpp_include, cpp_types).
 
 My current approach to this is to implement the thrift parser into the <a target="_blank" href="https://github.com/threft/threft/tree/master/tidm" >tidm package</a> and write down all things I like/dislike.
 
@@ -28,14 +28,14 @@ My current approach to this is to implement the thrift parser into the <a target
 
 <h4>Characters</h4>
 <pre>
-<a id="newline"                   >newline</a> = /* the Unicode code point U+000A */ .
-<a id="unicode_char"         >unicode_char</a> = /* an arbitrary Unicode code point except newline */ .
-<a id="unicode_letter"     >unicode_letter</a> = /* a Unicode code point classified as "Letter" */ .
-<a id="unicode_digit"       >unicode_digit</a> = /* a Unicode code point classified as "Decimal Digit" */ .
-<a id="letter"                     >letter</a> = "a" … "z" | "A" … "Z" .
+<a id="newline"          >newline</a>          = /* the Unicode code point U+000A */ .
+<a id="unicode_char"     >unicode_char</a>     = /* an arbitrary Unicode code point except newline */ .
+<a id="unicode_letter"   >unicode_letter</a>   = /* a Unicode code point classified as "Letter" */ .
+<a id="unicode_digit"    >unicode_digit</a>    = /* a Unicode code point classified as "Decimal Digit" */ .
+<a id="letter"           >letter</a>           = "a" … "z" | "A" … "Z" .
 <a id="letter_lowercase" >letter_lowercase</a> = "a" … "z" .
-<a id="decimal_digit"       >decimal_digit</a> = "0" … "9" .
-<a id="decimals"                 >decimals</a> = <a href="#decimal_digit">decimal_digit</a> { <a href="#decimal_digit">decimal_digit</a> } .
+<a id="decimal_digit"    >decimal_digit</a>    = "0" … "9" .
+<a id="decimals"         >decimals</a>         = <a href="#decimal_digit">decimal_digit</a> { <a href="#decimal_digit">decimal_digit</a> } .
 </pre>
 
 <h4>Identifier</h4>
