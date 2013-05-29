@@ -13,7 +13,7 @@ tagline:
 	pre a {
 		cursor: pointer;
 	}
-	
+
 	.keywords {
 		width: 500px;
 	}
@@ -24,7 +24,7 @@ tagline:
 	}
 
 </style>
-The Threft.io <abbr title="Interface Definition Language">IDL</abbr> is based on the thrift IDL, but is a lot stricter.
+The Threft.io <abbr title="Interface Definition Language">IDL</abbr> is based on the thrift IDL, but is a lot stricter.<br/>
 Some features have been removed (senum, cpp_include, cpp_types).
 
 <h3>Notation</h3>
@@ -181,7 +181,8 @@ A document consists of headers and definitions.
 <h4>Include</h4>
 Include statements are used to include a set of definition references into a document.
 <pre>
-<a id="include" >include</a> = "include" `"` include_name `.thrift"` .
+<a id="include"      >include</a>      = "include" `"` <a href="#include_name">include_name</a> `.threft"` .
+<a id="include_name" >include_name</a> = { <a href="#letter">letter</a> } .
 
 ... TODO examples ..
 </pre>
