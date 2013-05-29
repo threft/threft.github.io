@@ -22,6 +22,32 @@ tagline:
 The Threft.io <abbr title="Interface Definition Language">IDL</abbr> is based on the thrift IDL, but is a lot stricter.
 Some features have been removed (senum, cpp_include, cpp_types).
 
+<h3>Notation</h3>
+The IDL is specified using Extended Backus-Naur Form (EBNF):
+
+<pre>
+Production  = production_name "=" [ Expression ] "." .
+Expression  = Alternative { "|" Alternative } .
+Alternative = Term { Term } .
+Term        = production_name | token [ "…" token ] | Group | Option | Repetition .
+Group       = "(" Expression ")" .
+Option      = "[" Expression "]" .
+Repetition  = "{" Expression "}" .
+</pre>
+
+Productions are expressions constructed from terms and the following operators, in increasing precedence:
+
+<pre>
+|   alternation
+()  grouping
+[]  option (0 or 1 times)
+{}  repetition (0 to n times)
+</pre>
+
+Lower-case production names are used to identify lexical tokens. Non-terminals are in CamelCase. Lexical tokens are enclosed in double quotes "" or back quotes ``.
+
+The form a … b represents the set of characters from a through b as alternatives.
+
 <h3>Basic elements</h3>
 
 <h4>Characters</h4>
