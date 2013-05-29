@@ -6,9 +6,14 @@ tagline:
 {% include JB/setup %}
 
 <style>
+	pre {
+		font-family: Menlo, monospace;
+	}
+
 	pre a {
 		cursor: pointer;
 	}
+	
 	.keywords {
 		width: 500px;
 	}
@@ -61,9 +66,10 @@ The form a … b represents the set of characters from a through b as alternativ
 
 <h4>Identifier</h4>
 An identifier can contain letters, digits, dots and underscores. It must start with a letter or underscore.<br/>
-<i>TODO: idea. Rename `identifier` to `local_identifier`. Declare `include_name`. Then add declaration ```reference = include_name "." local_identifier```. And ```identifier = local_identifier | referece```</i>
 <pre>
-<a id="identifier" >identifier</a> = ( <a href="#letter">letter</a> | "_" ) { <a href="#letter">letter</a> | <a href="#decimal_digit">decimal_digit</a> | "_" | "-" | "." } .
+<a id="identifier"       >identifier</a>       = <a href="#local_identifier">local_identifier</a> | <a href="#reference">reference</a> .
+<a id="reference"        >reference</a>        = <a href="#include_name">include_name</a> "." <a href="#local_identifier">local_identifier</a> .
+<a id="local_identifier" >local_identifier</a> = ( <a href="#letter">letter</a> | "_" ) { <a href="#letter">letter</a> | <a href="#decimal_digit">decimal_digit</a> | "_" | "-" } .
 
 lowercase
 Uppercase
@@ -73,6 +79,7 @@ foo-bar
 fooBarç   // illegal: contains invalid character 'ç'
 -fooBar   // illegal: does not start with letter or underscore
 0fooBar   // illegal: does not start with letter or underscore
+
 </pre>
 
 <h4>String literal</h4>
@@ -174,7 +181,7 @@ A document consists of headers and definitions.
 <h4>Include</h4>
 Include statements are used to include a set of definition references into a document.
 <pre>
-<a id="include" >include</a> = "include" <a href="#string_literal">string_literal</a> .
+<a id="include" >include</a> = "include" `"` include_name `.thrift"` .
 
 ... TODO examples ..
 </pre>
