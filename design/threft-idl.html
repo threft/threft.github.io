@@ -127,9 +127,9 @@ The following keywords are reserved and may not be used as identifiers.
 <h3>Types</h3>
 When FieldType is an identifier, it must identify a typedef, enum or struct.
 <pre>
-<a href="#FieldType"      >FieldType</a>      = <a href="#identifier">identifier</a> | <a href="#QualifiedIdentifier">QualifiedIdentifier</a> | <a href="#BaseType">BaseType</a> | <a href="#ContainerType">ContainerType</a> .
-<a href="#DefinitionType" >DefinitionType</a> = <a href="#BaseType">BaseType</a> | <a href="#ContainerType">ContainerType</a>
-<a href="#BaseType"       >BaseType</a>       = "bool" | "byte" | "i16" | "i32" | "i64" | "double" | "string" | "binary" | "slist" .
+<a href="#FieldType"      >FieldType</a>      = <a href="#identifier">identifier</a> | <a href="#QualifiedIdentifier">QualifiedIdentifier</a> | <a href="#base_type">base_type</a> | <a href="#ContainerType">ContainerType</a> .
+<a href="#DefinitionType" >DefinitionType</a> = <a href="#base_type">base_type</a> | <a href="#ContainerType">ContainerType</a>
+<a href="#base_type"      >base_type</a>      = "bool" | "byte" | "i16" | "i32" | "i64" | "double" | "string" | "binary" | "slist" .
 <a href="#ContainerType"  >ContainerType</a>  = <a href="#MapType">MapType</a> | <a href="#SetType">SetType</a> | <a href="#ListType">ListType</a> .
 <a href="#MapType"        >MapType</a>        = "map&lt;" <a href="#FieldType">FieldType</a> "," <a href="#FieldType">FieldType</a> "&gt;" .
 <a href="#SetType"        >SetType</a>        = "set&lt;" <a href="#FieldType">FieldType</a> "&gt;" .
