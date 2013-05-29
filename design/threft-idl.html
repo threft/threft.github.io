@@ -96,8 +96,8 @@ fooBarç       // illegal: contains invalid character 'ç'
 "foo\nbar"   // \n is escaped to a newline (unicode code point U+000A)
 </pre>
 
-<h4>Keywords</h4>
-The following keywords are reserved and may not be used as identifiers.
+<h4>Keywords and types</h4>
+The following keywords and types are reserved and may not be used as identifiers.
 <div class="keywords" >
 	<div class="keyword" >binary</div>
 	<div class="keyword" >bool</div>
@@ -128,13 +128,13 @@ The following keywords are reserved and may not be used as identifiers.
 <h3>Types</h3>
 When FieldType is an identifier, it must identify a typedef, enum or struct.
 <pre>
-<a href="#FieldType"      >FieldType</a>      = <a href="#identifier">identifier</a> | <a href="#QualifiedIdentifier">QualifiedIdentifier</a> | <a href="#base_type">base_type</a> | <a href="#ContainerType">ContainerType</a> .
-<a href="#DefinitionType" >DefinitionType</a> = <a href="#base_type">base_type</a> | <a href="#ContainerType">ContainerType</a>
-<a href="#base_type"      >base_type</a>      = "bool" | "byte" | "i16" | "i32" | "i64" | "double" | "string" | "binary" | "slist" .
-<a href="#ContainerType"  >ContainerType</a>  = <a href="#MapType">MapType</a> | <a href="#SetType">SetType</a> | <a href="#ListType">ListType</a> .
-<a href="#MapType"        >MapType</a>        = "map&lt;" <a href="#FieldType">FieldType</a> "," <a href="#FieldType">FieldType</a> "&gt;" .
-<a href="#SetType"        >SetType</a>        = "set&lt;" <a href="#FieldType">FieldType</a> "&gt;" .
-<a href="#ListType"       >ListType</a>       = "list&lt;" <a href="#FieldType">FieldType</a> "&gt;" .
+<a id="#FieldType"      >FieldType</a>      = <a href="#identifier">identifier</a> | <a href="#QualifiedIdentifier">QualifiedIdentifier</a> | <a href="#base_type">base_type</a> | <a href="#ContainerType">ContainerType</a> .
+<a id="#DefinitionType" >DefinitionType</a> = <a href="#base_type">base_type</a> | <a href="#ContainerType">ContainerType</a>
+<a id="#base_type"      >base_type</a>      = "bool" | "byte" | "i16" | "i32" | "i64" | "double" | "string" | "binary" | "slist" .
+<a id="#ContainerType"  >ContainerType</a>  = <a href="#MapType">MapType</a> | <a href="#SetType">SetType</a> | <a href="#ListType">ListType</a> .
+<a id="#MapType"        >MapType</a>        = "map&lt;" <a href="#FieldType">FieldType</a> "," <a href="#FieldType">FieldType</a> "&gt;" .
+<a id="#SetType"        >SetType</a>        = "set&lt;" <a href="#FieldType">FieldType</a> "&gt;" .
+<a id="#ListType"       >ListType</a>       = "list&lt;" <a href="#FieldType">FieldType</a> "&gt;" .
 </pre>
 
 <h3>Definitions</h3>
@@ -161,9 +161,9 @@ Constant values can be a string_literal, a int/double/list or map constant (lite
 </pre>
 
 <h4>Enum</h4>
-<i>TODO: make the constant_value_int on enum required instead of optional?</i>
+<i>TODO: make the const_value_int on enum required instead of optional?</i>
 <pre>
-<a id="enum" >enum</a> = "enum" <a href="#identifier">identifier</a> "{" <a href="#newline">newline</a> { <a href="#identifier">identifier</a> ["=" <a href="#constant_value_int">constant_value_int</a>] <a href="#newline">newline</a> } "}" .
+<a id="enum" >enum</a> = "enum" <a href="#identifier">identifier</a> "{" <a href="#newline">newline</a> { <a href="#identifier">identifier</a> ["=" <a href="#const_value_int">const_value_int</a>] <a href="#newline">newline</a> } "}" .
 
 enum FoodType {
 	Pizza = 0
@@ -175,7 +175,7 @@ enum FoodType {
 <h4>Struct</h4>
 <pre>
 <a id="Struct" >Struct</a> = "struct" <a href="#identifier">identifier</a> "{" <a href="#newline">newline</a> { <a href="#Field">Field</a> } "}" .
-<a id="Field"  >Field</a>  = <a href="#constant_value_int">constant_value_int</a> ":" ( "required" | "optional" ) <a href="#FieldType">FieldType</a> <a href="#identifier">identifier</a> ["=" <a href="#const_value">const_value</a>] <a href="#newline">newline</a> .
+<a id="Field"  >Field</a>  = <a href="#const_value_int">const_value_int</a> ":" ( "required" | "optional" ) <a href="#FieldType">FieldType</a> <a href="#identifier">identifier</a> ["=" <a href="#const_value">const_value</a>] <a href="#newline">newline</a> .
 
 struct Food {
 	1: required FoodType     type
