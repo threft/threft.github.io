@@ -67,7 +67,7 @@ The form a … b represents the set of characters from a through b as alternativ
 An identifier can contain letters, digits, dots and underscores. It must start with a letter or underscore.<br/>
 <pre>
 <a id="identifier"          >identifier</a>           = ( <a href="#letter">letter</a> | "_" ) { <a href="#letter">letter</a> | <a href="#decimal_digit">decimal_digit</a> | "_" | "-" }
-<a id="QualifiedIdentifier" >QualifiedIdentifier</a>  = <a href="#IncludeName">IncludeName</a> "." <a href="#identifier">identifier</a> .
+<a id="QualifiedIdentifier" >QualifiedIdentifier</a>  = <a href="#include_name">include_name</a> "." <a href="#identifier">identifier</a> .
 
 
 lowercase     // local identifier
@@ -207,8 +207,8 @@ A document consists of headers and definitions.
 <h4>Include</h4>
 Include statements are used to include a set of definition references into a document.
 <pre>
-<a id="Include"      >Include</a>      = "include" `"` <a href="#IncludeName">IncludeName</a> `.threft"` .
-<a id="IncludeName"  >IncludeName</a>  = { <a href="#letter">letter</a> } .
+<a id="Include"      >Include</a>      = "include" `"` <a href="#include_name">include_name</a> `.threft"` .
+<a id="include_name"  >include_name</a>  = { <a href="#letter">letter</a> } .
 
 include "Colors.threft"
 </pre>
