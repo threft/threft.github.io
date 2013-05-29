@@ -47,7 +47,6 @@ Productions are expressions constructed from terms and the following operators, 
 {}  repetition (0 to n times)
 </pre>
 <br/>
-Lower-case production names are used to identify lexical tokens. Non-terminals are in CamelCase. Lexical tokens are enclosed in double quotes "" or back quotes ``.<br/>
 The form a … b represents the set of characters from a through b as alternatives.<br/>
 
 <h3>Basic elements</h3>
@@ -181,7 +180,8 @@ struct Food {
 	1: required FoodType     type
 	2: required i32          calories
 	3: required list<string> ingredients
-	4: optional bool         tasty
+	4: required Colors.Color color
+	5: optional bool         tasty
 }
 </pre>
 
@@ -210,7 +210,7 @@ Include statements are used to include a set of definition references into a doc
 <a id="Include"      >Include</a>      = "include" `"` <a href="#IncludeName">IncludeName</a> `.threft"` .
 <a id="IncludeName"  >IncludeName</a>  = { <a href="#letter">letter</a> } .
 
-... TODO examples ..
+include "Colors.threft"
 </pre>
 
 <h4>Namespace</h4>
@@ -219,7 +219,9 @@ The scope for the definition can be changed for any target (language) a namespac
 <a id="Namespace" >Namespace</a> = "namespace" <a href="#Target">Target</a> <a href="#string_literal">string_literal</a> .
 <a id="Target"    >Target</a>    = "*" | ( <a href="#letter_lowercase">letter_lowercase</a> { <a href="#letter_lowercase">letter_lowercase</a> } ) .
 
-... TODO examples ..
+namespace * "food"
+namespace java "com.food"
+namespace go "github.com/username/project/food"
 </pre>
 
 <script>
