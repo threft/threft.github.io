@@ -64,30 +64,31 @@ The form a … b represents the set of characters from a through b as alternativ
 <a id="decimals"         >decimals</a>         = <a href="#decimal_digit">decimal_digit</a> { <a href="#decimal_digit">decimal_digit</a> } .
 </pre>
 
-<h4>Identifier</h4>
+<h4>Identifiers</h4>
 An identifier can contain letters, digits, dots and underscores. It must start with a letter or underscore.<br/>
 <pre>
-<a id="identifier"       >identifier</a>       = <a href="#local_identifier">local_identifier</a> | <a href="#reference">reference</a> .
-<a id="reference"        >reference</a>        = <a href="#include_name">include_name</a> "." <a href="#local_identifier">local_identifier</a> .
-<a id="local_identifier" >local_identifier</a> = ( <a href="#letter">letter</a> | "_" ) { <a href="#letter">letter</a> | <a href="#decimal_digit">decimal_digit</a> | "_" | "-" } .
+<a id="identifier"          >identifier</a>           = ( <a href="#letter">letter</a> | "_" ) { <a href="#letter">letter</a> | <a href="#decimal_digit">decimal_digit</a> | "_" | "-" }
+<a id="QualifiedIdentifier" >QualifiedIdentifier</a>  = <a href="#IncludeName">IncludeName</a> "." <a href="#identifier">identifier</a> .
 
-lowercase  // local_identifier
-Uppercase  // local_identifier
-camelCase  // local_identifier
-_fooBar    // local_identifier
-foo-bar    // local_identifier
-errors.EOF // reference
-info.foo   // reference
-foo.bar.x  // illegal: cannot reference a reference
-fooBarç    // illegal: contains invalid character 'ç'
--fooBar    // illegal: does not start with letter or underscore
-0fooBar    // illegal: does not start with letter or underscore
+
+lowercase     // local identifier
+Uppercase     // local identifier
+camelCase     // local identifier
+_fooBar       // local identifier
+foo-bar       // local identifier
+myEnum.X      // enum value identifier
+foo.myEnum.X  // reference to myEnum.X in document "foo.threft"
+errors.EOF    // reference to EOF in other document "errors.threft"
+info.foo      // reference to foo in document "info.threft"
+fooBarç       // illegal: contains invalid character 'ç'
+-fooBar       // illegal: does not start with letter or underscore
+0fooBar       // illegal: does not start with letter or underscore
 
 </pre>
 
 <h4>String literal</h4>
 <pre>
-<a id="string_literal" >string_literal</a> = `"` { <a href="#unicode_char">unicode_char</a> | `\"` | "\n" } `"`
+<a id="string_literal" >string_literal</a> = `"` { <a href="#unicode_char">unicode_char</a> | `\"` | `\n` } `"`
 
 "foobar"
 "foo"bar"    // illegal: " should be escaped
@@ -125,45 +126,67 @@ The following keywords are reserved and may not be used as identifiers.
 <div style="clear: both;">&nbsp;</div>
 
 <h3>Types</h3>
+When FieldType is an identifier, it must identify a typedef, enum or struct.
 <pre>
-<a href="#field_type"      >field_type</a>      = <a href="#identifier">identifier</a> | <a href="#base_type">base_type</a> | <a href="#container_type">container_type</a> .
-<a href="#definition_type" >definition_type</a> = <a href="#base_type">base_type</a> | <a href="#container_type">container_type</a> //++ TODO move to definition?? .
-<a href="#base_type"       >base_type</a>       = "bool" | "byte" | "i16" | "i32" | "i64" | "double" | "string" | "binary" | "slist" .
-<a href="#container_type"  >container_type</a>  = <a href="#map_type">map_type</a> | <a href="#set_type">set_type</a> | <a href="#list_type">list_type</a> .
-<a href="#map_type"        >map_type</a>        = "map&lt;" <a href="#field_type">field_type</a> "," <a href="#field_type">field_type</a> "&gt;" .
-<a href="#set_type"        >set_type</a>        = "set&lt;" <a href="#field_type">field_type</a> "&gt;" .
-<a href="#list_type"       >list_type</a>       = "list&lt;" <a href="#field_type">field_type</a> "&gt;" .
+<a href="#FieldType"      >FieldType</a>      = <a href="#identifier">identifier</a> | <a href="#QualifiedIdentifier">QualifiedIdentifier</a> | <a href="#BaseType">BaseType</a> | <a href="#ContainerType">ContainerType</a> .
+<a href="#DefinitionType" >DefinitionType</a> = <a href="#BaseType">BaseType</a> | <a href="#ContainerType">ContainerType</a>
+<a href="#BaseType"       >BaseType</a>       = "bool" | "byte" | "i16" | "i32" | "i64" | "double" | "string" | "binary" | "slist" .
+<a href="#ContainerType"  >ContainerType</a>  = <a href="#MapType">MapType</a> | <a href="#SetType">SetType</a> | <a href="#ListType">ListType</a> .
+<a href="#MapType"        >MapType</a>        = "map&lt;" <a href="#FieldType">FieldType</a> "," <a href="#FieldType">FieldType</a> "&gt;" .
+<a href="#SetType"        >SetType</a>        = "set&lt;" <a href="#FieldType">FieldType</a> "&gt;" .
+<a href="#ListType"       >ListType</a>       = "list&lt;" <a href="#FieldType">FieldType</a> "&gt;" .
 </pre>
 
 <h3>Definitions</h3>
 
 <h4>Typedef</h4>
+Defines the type on a new identifier.
 <pre>
-<a id="typedef" >typedef</a> = TODO
+<a id="Typedef" >Typedef</a> = "typedef" <a href="#DefinitionType">DefinitionType</a> <a href="#identifier">identifier</a> .
 </pre>
 
 <h4>Constants</h4>
-Constants are defined and set with a constant value.
+Constants are defined and set with a constant value. The definition must use an undefined identifier.
 <pre>
-<a id="const"               >const</a>              = "const" <a href="#fieldtype">fieldtype</a> <a href="#identifier">identifier</a> "=" <a href="#const_value">const_value</a> .
-<a id="const_value"         >const_value</a>        = <a href="#literal">literal</a> | <a href="#identifier">identifier</a> | <a href="#const_value_int">const_value_int</a> | <a href="#const_value_double">const_value_double</a> | <a href="#const_value_list">const_value_list</a> | <a href="#const_value_map">const_value_map</a> .
-<a id="const_value_int"     >const_value_int</a>    = ["+" | "-"] <a href="#decimals">decimals</a> .
-<a id="const_value_double"  >const_value_double</a> = ["+" | "-"] <a href="#decimals">decimals</a> ["." <a href="#decimals">decimals</a> ] [ ("E" | "e") <a href="#const_value_int">const_value_int</a> ] .
-<a id="const_value_list"    >const_value_list</a>   = "[" {<a href="#const_value">const_value</a> } "]" .
-<a id="const_value_map"     >const_value_map</a>    = "{" {<a href="#const_value">const_value</a> ":" <a href="#const_value">const_value</a> } "}" .
+<a id="Const" >Const</a> = "const" <a href="#FieldType">FieldType</a> ( <a href="#identifier">identifier</a> | <a href="#QualifiedIdentifier">QualifiedIdentifier</a> ) "=" <a href="#const_value">const_value</a> .
+</pre>
+<br/>
+Constant values can be a string_literal, a int/double/list or map constant (literal) or a defined identifier that is identifying a value.
+<pre>
+<a id="const_value"        >const_value</a>        = <a href="#string_literal">string_literal</a> | <a href="#identifier">identifier</a> | <a href="#QualifiedIdentifier">QualifiedIdentifier</a> | <a href="#const_value_int">const_value_int</a> | <a href="#const_value_double">const_value_double</a> | <a href="#const_value_list">const_value_list</a> | <a href="#const_value_map">const_value_map</a> .
+<a id="const_value_int"    >const_value_int</a>    = ["+" | "-"] <a href="#decimals">decimals</a> .
+<a id="const_value_double" >const_value_double</a> = ["+" | "-"] <a href="#decimals">decimals</a> ["." <a href="#decimals">decimals</a> ] [ ("E" | "e") <a href="#const_value_int">const_value_int</a> ] .
+<a id="const_value_list"   >const_value_list</a>   = "[" {<a href="#const_value">const_value</a> } "]" .
+<a id="const_value_map"    >const_value_map</a>    = "{" {<a href="#const_value">const_value</a> ":" <a href="#const_value">const_value</a> } "}" .
 </pre>
 
 <h4>Enum</h4>
+<i>TODO: make the constant_value_int on enum required instead of optional?</i>
 <pre>
-<a id="enum" >enum</a> = TODO .
+<a id="enum" >enum</a> = "enum" <a href="#identifier">identifier</a> "{" <a href="#newline">newline</a> { <a href="#identifier">identifier</a> ["=" <a href="#constant_value_int">constant_value_int</a>] <a href="#newline">newline</a> } "}" .
+
+enum FoodType {
+	Pizza = 0
+	Cheese = 1
+	Banana = 2
+}
 </pre>
 
 <h4>Struct</h4>
 <pre>
-<a id="struct" >struct</a> = TODO .
+<a id="Struct" >Struct</a> = "struct" <a href="#identifier">identifier</a> "{" <a href="#newline">newline</a> { <a href="#Field">Field</a> } "}" .
+<a id="Field"  >Field</a>  = <a href="#constant_value_int">constant_value_int</a> ":" ( "required" | "optional" ) <a href="#FieldType">FieldType</a> <a href="#identifier">identifier</a> ["=" <a href="#const_value">const_value</a>] <a href="#newline">newline</a> .
+
+struct Food {
+	1: required FoodType     type
+	2: required i32          calories
+	3: required list<string> ingredients
+	4: optional bool         tasty
+}
 </pre>
 
 <h4>Exception</h4>
+<i>TODO: Remove exceptions and just use structs instead? Generator can probably decide to write a native exception when struct is being used as exception... Rewriting .thrift files would just required find/replace "exception">"struct".</i>
 <pre>
 <a id="exception" >exception</a> = TODO .
 </pre>
@@ -176,16 +199,16 @@ Constants are defined and set with a constant value.
 <h3>Document</h3>
 A document consists of headers and definitions.
 <pre>
-<a id="document"   >document</a>   = { <a href="#header">header</a> } { <a href="#definition">definition</a> } .
-<a id="header"     >header</a>     = <a href="#include">include</a> | <a href="#namespace">namespace</a> .
-<a id="definition" >definition</a> = { <a href="#typedef">typedef</a> | <a href="#const">const</a> | <a href="#enum">enum</a> | <a href="#struct">struct</a> | <a href="#exception">exception</a> | <a href="#service">service</a> } .
+<a id="Document"   >Document</a>   = { <a href="#Header">Header</a> } { <a href="#Definition">Definition</a> } .
+<a id="Header"     >Header</a>     = <a href="#Include">Include</a> | <a href="#Namespace">Namespace</a> .
+<a id="Definition" >Definition</a> = { <a href="#Typedef">Typedef</a> | <a href="#Const">Const</a> | <a href="#Enum">Enum</a> | <a href="#Struct">Struct</a> | <a href="#Exception">Exception</a> | <a href="#Service">Service</a> } .
 </pre>
 
 <h4>Include</h4>
 Include statements are used to include a set of definition references into a document.
 <pre>
-<a id="include"      >include</a>      = "include" `"` <a href="#include_name">include_name</a> `.threft"` .
-<a id="include_name" >include_name</a> = { <a href="#letter">letter</a> } .
+<a id="Include"      >Include</a>      = "include" `"` <a href="#IncludeName">IncludeName</a> `.threft"` .
+<a id="IncludeName"  >IncludeName</a>  = { <a href="#letter">letter</a> } .
 
 ... TODO examples ..
 </pre>
@@ -193,8 +216,8 @@ Include statements are used to include a set of definition references into a doc
 <h4>Namespace</h4>
 The scope for the definition can be changed for any target (language) a namespace header.
 <pre>
-<a id="namespace" >namespace</a> = "namespace" <a href="#target">target</a> <a href="#string_literal">string_literal</a> .
-<a id="target"    >target</a>    = "*" | ( <a href="#letter_lowercase">letter_lowercase</a> { <a href="#letter_lowercase">letter_lowercase</a> } ) .
+<a id="Namespace" >Namespace</a> = "namespace" <a href="#Target">Target</a> <a href="#string_literal">string_literal</a> .
+<a id="Target"    >Target</a>    = "*" | ( <a href="#letter_lowercase">letter_lowercase</a> { <a href="#letter_lowercase">letter_lowercase</a> } ) .
 
 ... TODO examples ..
 </pre>
