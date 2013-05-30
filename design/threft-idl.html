@@ -153,7 +153,8 @@ Constants are defined and set with a constant value. The definition must use an 
 <br/>
 Constant values can be a string_literal, a int/double/list or map constant (literal) or a defined identifier that is identifying a value.
 <pre>
-<a id="const_value"        >const_value</a>        = <a href="#string_literal">string_literal</a> | <a href="#identifier">identifier</a> | <a href="#QualifiedIdentifier">QualifiedIdentifier</a> | <a href="#const_value_int">const_value_int</a> | <a href="#const_value_double">const_value_double</a> | <a href="#const_value_list">const_value_list</a> | <a href="#const_value_map">const_value_map</a> .
+<a id="const_value"        >const_value</a>        = <a href="#string_literal">string_literal</a> | <a href="#identifier">identifier</a> | <a href="#QualifiedIdentifier">QualifiedIdentifier</a> | 
+                                                     <a href="#const_value_int">const_value_int</a> | <a href="#const_value_double">const_value_double</a> | <a href="#const_value_list">const_value_list</a> | <a href="#const_value_map">const_value_map</a> .
 <a id="const_value_int"    >const_value_int</a>    = ["+" | "-"] <a href="#decimals">decimals</a> .
 <a id="const_value_double" >const_value_double</a> = ["+" | "-"] <a href="#decimals">decimals</a> ["." <a href="#decimals">decimals</a> ] [ ("E" | "e") <a href="#const_value_int">const_value_int</a> ] .
 <a id="const_value_list"   >const_value_list</a>   = "[" { <a href="#const_value">const_value</a> } "]" .
@@ -163,7 +164,7 @@ Constant values can be a string_literal, a int/double/list or map constant (lite
 <h4>Enum</h4>
 <i>TODO: make the const_value_int on enum required instead of optional?</i>
 <pre>
-<a id="enum" >enum</a> = "enum" <a href="#identifier">identifier</a> "{" <a href="#newline">newline</a> { <a href="#identifier">identifier</a> ["=" <a href="#const_value_int">const_value_int</a>] <a href="#newline">newline</a> } "}" .
+<a id="Enum" >Enum</a> = "enum" <a href="#identifier">identifier</a> "{" <a href="#newline">newline</a> { <a href="#identifier">identifier</a> ["=" <a href="#const_value_int">const_value_int</a>] <a href="#newline">newline</a> } "}" .
 
 enum FoodType {
 	Pizza = 0
