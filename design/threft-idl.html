@@ -181,7 +181,7 @@ enum FoodType {
 struct Food {
 	1: required FoodType     type
 	2: required i32          calories
-	3: required list<string> ingredients
+	3: required list&lt;string&gt; ingredients
 	4: required Colors.Color color
 	5: optional bool         tasty
 }
